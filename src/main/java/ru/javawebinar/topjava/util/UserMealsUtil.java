@@ -10,8 +10,6 @@ import java.time.Month;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static java.util.Objects.isNull;
-
 public class UserMealsUtil {
     public static void main(String[] args) {
         List<UserMeal> meals = Arrays.asList(
