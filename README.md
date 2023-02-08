@@ -79,7 +79,7 @@ Java Enterprise Online Project
 ## ![video](https://cloud.githubusercontent.com/assets/13649199/13672715/06dbc6ce-e6e7-11e5-81a9-04fbddb9e488.png) 7. [Maven](https://drive.google.com/file/d/1qEJTwv9FNUQjx-y9MSydH01xaAne0-hu)
 - [Руководство по Maven](https://topjava.ru/blog/apache-maven-osnovy-1)
 - Wiki: [Apache Maven](https://ru.wikipedia.org/wiki/Apache_Maven)
-- [The Central Repository](http://search.maven.org)
+- [The Central ru.javawebinar.topjava.repository](http://search.maven.org)
 - Дополнительно:
     - [Мой Wiki по Maven](https://github.com/JavaOPs/topjava/wiki/Maven)
     - [Основы Maven](https://www.youtube.com/watch?v=0uwMKktzixU)
