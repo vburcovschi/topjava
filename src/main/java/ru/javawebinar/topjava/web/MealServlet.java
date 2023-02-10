@@ -1,9 +1,8 @@
 package ru.javawebinar.topjava.web;
 
 import org.slf4j.Logger;
-import ru.javawebinar.topjava.model.MealTo;
-import ru.javawebinar.topjava.repository.MealRepository;
-import ru.javawebinar.topjava.util.MealsUtil;
+import ru.javawebinar.topjava.model.UserMealWithExcess;
+import ru.javawebinar.topjava.util.UserMealsUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,11 +16,11 @@ import static org.slf4j.LoggerFactory.getLogger;
 
 public class MealServlet extends HttpServlet {
     private static final Logger log = getLogger(MealServlet.class);
-    private static final MealRepository mealRepository = new MealRepository();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<MealTo> mealList = MealsUtil.filteredByStreams(mealRepository.getAll(), LocalTime.of(0, 0), LocalTime.of(23, 59), 2000);
+        List<UserMealWithExcess> mealList = UserMealsUtil.filteredByStreams(UserMealsUtil.getTestData(), LocalTime.MIN,
+                LocalTime.MAX, UserMealsUtil.CALORIES_PER_DAY);
         log.debug("Meal list was successfully created. Total "+mealList.size()+" position(s)");
         request.setAttribute("mealList", mealList);
         request.getRequestDispatcher("/meals.jsp").forward(request, response);

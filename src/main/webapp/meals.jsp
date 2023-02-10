@@ -1,5 +1,4 @@
-<%@ page import="java.awt.*" %>
-<%@ page import="static java.util.Objects.isNull" %>
+<%@ page import="ru.javawebinar.topjava.util.TimeUtil" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -29,37 +28,38 @@
     </style>
 </head>
 <body>
-<h3><a href="index.html">Home</a></h3>
-<hr>
-<h2>Meals</h2>
-<a href="add.jsp">Add Meal</a>
-<br><br>
-<table>
-    <tr>
-        <th>Date</th>
-        <th>Description</th>
-        <th>Calories</th>
-        <th></th>
-        <th></th>
-    </tr>
-    <c:forEach var="mealList" items="${mealList}">
-        <tr style="color:${mealList.color}">
-            <td>
-                <fmt:parseDate value="${ mealList.dateTime }" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime"
-                               type="both"/>
-                <fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${ parsedDateTime }"/>
-            </td>
-            <td><c:out value="${mealList.description}"/></td>
-            <td><c:out value="${mealList.calories}"/></td>
-            <td>
-                <a href="edit.jsp">Edit</a>
-            </td>
-            <td>
-                <a href=delete">Delete</a>
-            </td>
+    <h3><a href="index.html">Home</a></h3>
+    <hr>
+    <h2>Meals</h2>
+    <a href="write.jsp">Add Meal</a>
+    <br><br>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Calories</th>
+            <th></th>
+            <th></th>
         </tr>
-    </c:forEach>
-</table>
-
+        <c:forEach var="userMeal" items="${mealList}">
+            <jsp:useBean id="userMeal" type="ru.javawebinar.topjava.model.UserMealWithExcess"/>
+            <tr style="color:${userMeal.excess == 'true' ? 'red':'green'}">
+                <td>
+<%--                    <fmt:parseDate value="${ userMeal.dateTime }" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime"
+                                   type="both"/>
+                    <fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${ parsedDateTime }"/>--%>
+                    <%=TimeUtil.toString(userMeal.getDateTime())%>
+                </td>
+                <td>${userMeal.description}</td>
+                <td>${userMeal.calories}</td>
+                <td>
+                    <a href="edit.jsp">Edit</a>
+                </td>
+                <td>
+                    <a href=delete">Delete</a>
+                </td>
+            </tr>
+        </c:forEach>
+    </table>
 </body>
 </html>
