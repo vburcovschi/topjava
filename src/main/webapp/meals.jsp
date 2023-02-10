@@ -25,6 +25,8 @@
             padding: 5px;
             background: #ffffff;
         }
+        .normal {color: green}
+        .exceeded {color: red}
     </style>
 </head>
 <body>
@@ -43,11 +45,12 @@
         </tr>
         <c:forEach var="userMeal" items="${mealList}">
             <jsp:useBean id="userMeal" type="ru.javawebinar.topjava.model.UserMealWithExcess"/>
-            <tr style="color:${userMeal.excess == 'true' ? 'red':'green'}">
+<%--            <tr style="color:${userMeal.excess ? 'red':'green'}">  varinată alternativă lucrativă--%>
+            <tr class="${userMeal.excess ? 'exceeded':'normal'}">
                 <td>
 <%--                    <fmt:parseDate value="${ userMeal.dateTime }" pattern="yyyy-MM-dd'T'HH:mm" var="parsedDateTime"
                                    type="both"/>
-                    <fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${ parsedDateTime }"/>--%>
+                    <fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${ parsedDateTime }"/>   variantă alternativă lucrativă--%>
                     <%=TimeUtil.toString(userMeal.getDateTime())%>
                 </td>
                 <td>${userMeal.description}</td>
