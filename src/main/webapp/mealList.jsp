@@ -33,7 +33,7 @@
     <h3><a href="index.html">Home</a></h3>
     <hr>
     <h2>Meals</h2>
-    <a href="write.jsp">Add Meal</a>
+    <a href="userMeals?action=create">Add Meal</a>
     <br><br>
     <table>
         <tr>
@@ -55,12 +55,8 @@
                 </td>
                 <td>${userMeal.description}</td>
                 <td>${userMeal.calories}</td>
-                <td>
-                    <a href="edit.jsp">Edit</a>
-                </td>
-                <td>
-                    <a href=delete">Delete</a>
-                </td>
+                <td><a href="userMeals?action=update&id=${userMeal.id}">Edit</a></td>
+                <td><a href="userMeals?action=delete&id=${userMeal.id}">Delete</a></td>
             </tr>
         </c:forEach>
     </table>
