@@ -492,12 +492,12 @@ hamcrest-all используется в проверках `RootControllerTest`
 
 Да, Spring смотрит в classpath и если видит там Jackson, то подключает интеграцию с ним.
 
-> Где-то слышал, что любой ресурс по REST должен однозначно идентифицироваться через url без параметров. Правильно ли задавать URL для фильтрации в виде `http://localhost/topjava/rest/meals/filter/{startDate}/{startTime}/{endDate}/{endTime}` ?
+> Где-то слышал, что любой ресурс по REST должен однозначно идентифицироваться через url без параметров. Правильно ли задавать URL для фильтрации в виде `http://localhost/topjava/rest/userMeals/filter/{startDate}/{startTime}/{endDate}/{endTime}` ?
 
 Так делают только при
 отношении <a href="https://ru.wikipedia.org/wiki/Диаграмма_классов#.D0.90.D0.B3.D1.80.D0.B5.D0.B3.D0.B0.D1.86.D0.B8.D1.8F">
 агрегация</a>, например, если давать админу право смотреть еду любого юзера, URL мог бы быть похож
-на `http://localhost/topjava/rest/users/{userId}/meals/{mealId}` (не рекомендуется, см. ссылку ниже). В случае критериев
+на `http://localhost/topjava/rest/users/{userId}/userMeals/{mealId}` (не рекомендуется, см. ссылку ниже). В случае критериев
 поиска или страничных данных они передаются как параметр. Смотри также:
 
 - [15 тривиальных фактов о правильной работе с протоколом HTTP](https://habrahabr.ru/company/yandex/blog/265569/)
@@ -513,7 +513,7 @@ hamcrest-all используется в проверках `RootControllerTest`
 ## ![hw](https://cloud.githubusercontent.com/assets/13649199/13672719/09593080-e6e7-11e5-81d1-5cb629c438ca.png) Домашнее задание HW07
 
 - 1: Добавить тесты контроллеров:
-    - 1.1 `RootControllerTest.getMeals` для `meals.jsp`
+    - 1.1 `RootControllerTest.getMeals` для `userMeals.jsp`
     - 1.2 Сделать `ResourceControllerTest` для `style.css` (проверить `status` и `ContentType`)
 - 2: Реализовать `MealRestController` и протестировать его через `MealRestControllerTest`
     - 2.1 следите, чтобы url в тестах совпадал с параметрами в методе контроллера. Можно добавить
@@ -538,7 +538,7 @@ hamcrest-all используется в проверках `RootControllerTest`
 - 4: Протестировать `MealRestController` (SoapUI, Curl, IDEA Test RESTful Web Service, Postman). Запросы `curl` занести
   в отдельный `md` файл (или `README.md`)
 - 5: Добавить в `AdminRestController` и `ProfileRestController` методы получения пользователя вместе с
-  едой (`getWithMeals`, `/with-meals`).
+  едой (`getWithMeals`, `/with-userMeals`).
     - [Jackson – Bidirectional Relationships](https://www.baeldung.com/jackson-bidirectional-relationships-and-infinite-recursion)
 
 ### Optional 2
@@ -554,7 +554,7 @@ hamcrest-all используется в проверках `RootControllerTest`
 - 1: Ошибка в тесте _Invalid read array from JSON_ обычно расшифровывается немного ниже: читайте внимательно.
 - 2: <a href="https://urvanov.ru/2016/12/03/jackson-и-неизменяемые-объекты/">Jackson и неизменяемые объекты</a> (для
   сериализации `MealTo`)
-- 3: Если у meal, приходящий в контроллер, поля `null`, проверьте `@RequestBody` перед параметром (данные приходят в
+- 3: Если у userMeal, приходящий в контроллер, поля `null`, проверьте `@RequestBody` перед параметром (данные приходят в
   формате JSON)
 - 4: При проблемах с собственным форматтером убедитесь, что в конфигурации `<mvc:annotation-driven...` не дублируется
 - 5: **Проверьте выполнение ВСЕХ тестов через maven**. В случае проблем проверьте, что не портите эталонный объект
@@ -562,5 +562,5 @@ hamcrest-all используется в проверках `RootControllerTest`
 - 6: `@Autowired` в тестах нужно делать в том месте, где класс будет использоваться. Общий принцип: не размазывать код
   по классам, объявление переменных держать как можно ближе к ее использованию, группировать (не смешивать) код с разной
   функциональностью.
-- 7: Попробуйте в `RootControllerTest.getMeals` сделать сравнение через `model().attribute("meals", expectedValue)`.
+- 7: Попробуйте в `RootControllerTest.getMeals` сделать сравнение через `model().attribute("userMeals", expectedValue)`.
   Учтите, что вывод результатов через `toString` к сравнению отношения не имеет.
