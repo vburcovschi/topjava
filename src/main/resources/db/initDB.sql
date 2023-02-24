@@ -35,16 +35,3 @@ CREATE TABLE meal
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
 CREATE UNIQUE INDEX meal_unique_user_datetime_idx ON meal (user_id, date_time);
-
-DROP TABLE IF EXISTS meals;
-
-CREATE TABLE meals
-(
-    id               INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-    name             VARCHAR                           NOT NULL,
-    dateTime         TIMESTAMP                         NOT NULL,
-    description      VARCHAR                           NOT NULL,
-    calories         INTEGER             DEFAULT 2000  NOT NULL,
-    userId           integer                           NOT NULL
-);
-CREATE UNIQUE INDEX UserDateTime ON meals (datetime, userid);
