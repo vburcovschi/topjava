@@ -9,7 +9,7 @@
 
         <encoder>
             <charset>UTF-8</charset>
-            <pattern>%date %-5level %logger{0} [%file:%line] %msg%n</pattern>
+            <pattern>%d{HH:mm:ss.SSS} %highlight(%-5level) %cyan(%class{50}.%M:%L) - %msg%n</pattern>
         </encoder>
     </appender>
 
@@ -20,9 +20,9 @@
         </encoder>
     </appender>
 
-    <logger name="org.postgresql" level="debug"/>
-    <logger name="org.springframework.jdbc" level="debug"/>
-    <logger name="org.springframework.jdbc" level="info"/>
+<!--    <logger name="org.postgresql" level="debug"/>-->
+    <!--<logger name="org.springframework.jdbc" level="debug"/>-->
+    <!--<logger name="org.springframework.jdbc" level="info"/>-->
     <logger name="ru.javawebinar.topjava" level="debug"/>
 
     <root level="info">
